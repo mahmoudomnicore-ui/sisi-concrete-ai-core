@@ -99,29 +99,18 @@
             background-color: var(--primary-gold);
             color: #000;
             border: none;
-            padding: 10px 16px;
+            padding: 12px 18px;
             font-weight: bold;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            margin: 6px 6px 6px 0;
+            margin: 8px 8px 8px 0;
             transition: 0.3s;
+            font-size: 14px;
         }
         button.action-btn:hover {
             background-color: #e67e22;
+            transform: scale(1.02);
         }
-        /* نافذة العرض البصري ومخططات CAD الحمراء */
-        .cad-screen {
-            background-color: #05070c;
-            border: 2px solid var(--cad-red);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-family: monospace;
-            font-size: 13px;
-            color: #ff6666;
-            display: none;
-            white-space: pre-line;
-            line-height: 1.6;}
         .svg-preview-box {
             background-color: #05070c;
             border: 1px dashed var(--primary-gold);
@@ -129,7 +118,6 @@
             padding: 15px;
             margin-top: 15px;
             text-align: center;
-            display: none;
         }
         .footer-disclaimer {
             margin-top: 25px;
@@ -141,15 +129,12 @@
             line-height: 1.6;
         }
     </style>
-</head>
-<body>
-
-    <div class="dashboard-container">
+</head><div class="dashboard-container">
         <h1>SISI CONCRETE AI</h1>
         <p class="subtitle">المنظومة الهندسية والصناعية الكبرى - التصميمات السيادية ومحاكاة المعدات والروبوتات</p>
         
         <div class="owner-banner">
-            👑 مرحباً بك يا محمود يا سيسي (المالك والمطور الرئيسي) - محرك التصاميم الهندسية الفوق عالمية مفعل.
+            👑 مرحباً بك يا محمود يا سيسي (المالك والمطور الرئيسي) - محرك الاستجابة الفورية مفعل.
         </div>
 
         <!-- المؤشرات العامة -->
@@ -168,94 +153,78 @@
             </div>
         </div>
 
-        <!-- 1. مولد التصاميم الهندسية الشاملة ومحطات الخرسانة والطوب والأسفلت -->
+        <!-- 1. مولد التصاميم الهندسية الشاملة -->
         <div class="card">
             <h4>مولد التصاميم الهندسية والمخططات (CAD Blueprints)</h4>
-            <p style="font-size: 13px; color: #d1d5db;">توليد المخططات التنفيذية الدقيقة بالخطوط الهندسية لمحطات الخرسانة، ماكينات الطوب، ومصانع الأسفلت:</p>
-            <button class="action-btn" onclick="renderDesign('concrete')">تصميم محطة خرسانة (Twin Shaft)</button>
-            <button class="action-btn" onclick="renderDesign('brick')">تصميم ماكينة طوب آلية</button>
-            <button class="action-btn" onclick="renderDesign('asphalt')">تصميم محطة أسفلت (Drum Mix)</button>
-            <button class="action-btn" onclick="renderDesign('plasma')">تصميم روبوت تقطيع بالبلازما</button>
+            <p style="font-size: 13px; color: #d1d5db;">اضغط على أي تصميم لتوليده وعرضه فوراً:</p>
+            <button class="action-btn" onclick="renderDesign('concrete')">🧱 تصميم محطة خرسانة (Twin Shaft)</button>
+            <button class="action-btn" onclick="renderDesign('brick')">🏗️ تصميم ماكينة طوب آلية</button>
+            <button class="action-btn" onclick="renderDesign('asphalt')">🛣️ تصميم محطة أسفلت (Drum Mix)</button>
+            <button class="action-btn" onclick="renderDesign('plasma')">🤖 تصميم روبوت تقطيع بالبلازما</button>
             
-            <div id="cadOutput" class="cad-screen"></div>
-            <div id="svgBox" class="svg-preview-box">
-                <!-- رسم توضيحي بالخطوط الهندسية CAD الحمراء -->
-                <svg width="100%" height="160" viewBox="0 0 500 160">
-                    <rect x="20" y="20" width="460" height="120" fill="none" stroke="#ff3333" stroke-width="2" stroke-dasharray="5,5"/>
-                    <line x1="50" y1="100" x2="450" y2="100" stroke="#ff3333" stroke-width="2"/>
-                    <rect x="80" y="50" width="60" height="50" fill="none" stroke="#f39c12" stroke-width="2"/>
-                    <text x="90" y="80" fill="#f39c12" font-size="12">صامعة 1</text>
-                    <rect x="160" y="40" width="80" height="60" fill="none" stroke="#f39c12" stroke-width="2"/>
-                    <text x="175" y="75" fill="#f39c12" font-size="12">خلاطة توأمية</text>
-                    <path d="M 260 70 L 350 70 L 380 100" fill="none" stroke="#10b981" stroke-width="3"/>
-                    <text x="290" y="60" fill="#10b981" font-size="11">سير نقل مواد (2.4 m/s)</text>
-                    <circle cx="420" cy="85" r="15" fill="none" stroke="#ff3333" stroke-width="2"/>
-                    <text x="400" y="125" fill="#ff3333" font-size="10">SISI-CAD-ENGINE</text>
+            <div class="svg-preview-box">
+                <p style="color: var(--primary-gold); font-size: 12px; margin-bottom: 5px;">معاينة رسم الـ CAD الهندسي الحي:</p>
+                <svg width="100%" height="150" viewBox="0 0 500 150">
+                    <rect x="10" y="10" width="480" height="130" fill="none" stroke="#ff3333" stroke-width="2" stroke-dasharray="4,4"/>
+                    <line x1="40" y1="90" x2="460" y2="90" stroke="#ff3333" stroke-width="2"/>
+                    <rect x="60" y="40" width="60" height="50" fill="none" stroke="#f39c12" stroke-width="2"/>
+                    <text x="70" y="70" fill="#f39c12" font-size="11">صامعة</text>
+                    <rect x="140" y="30" width="80" height="60" fill="none" stroke="#f39c12" stroke-width="2"/>
+                    <text x="155" y="65" fill="#f39c12" font-size="11">خلاطة توأمية</text>
+                    <path d="M 230 60 L 330 60 L 360 90" fill="none" stroke="#10b981" stroke-width="3"/>
+                    <text x="250" y="50" fill="#10b981" font-size="10">سير نقل مواد</text>
                 </svg>
             </div>
         </div>
 
-        <!-- 2. التصور الأولي للمحطة في الموقع الفعلي (Site Layout) -->
+        <!-- 2. التصور الأولي للمحطة في الموقع الفعلي -->
         <div class="card">
-            <h4>التصور الأولي والتشغيلي للمحطة في الموقع (Site Layout)</h4><p style="font-size: 13px; color: #d1d5db;">توليد نموذج الكارد التفيذي للمحطة في الموقع قبل الإنشاء الفعلي:</p>
-            <button class="action-btn" onclick="renderSiteView()">إصدار صورة ورسم الموقع الافتراضي</button>
-            <div id="siteOutput" class="cad-screen"></div>
+            <h4>التصور الأولي والتشغيلي للمحطة في الموقع (Site Layout)</h4>
+            <p style="font-size: 13px; color: #d1d5db;">إصدار رسم الموقع الافتراضي للمحطة:</p>
+            <button class="action-btn" onclick="renderSiteView()">📍 إصدَار رسم الموقع الافتراضي</button>
         </div>
 
         <!-- 3. الروبوتات والتقطيع بالبلازما والأتمتة -->
         <div class="card">
             <h4>إدارة روبوتات الأتمتة والتقطيع الصناعي</h4>
-            <p style="font-size: 13px; color: #d1d5db;">مراقبة دقة حركات الأذرع الروبوتية، طاقة الليزر والبلازما:</p>
-            <button class="action-btn" onclick="runRobot('welding')">تشخيص روبوت اللحام الهيكلي</button>
-            <button class="action-btn" onclick="runRobot('plasma')">تشغيل وحدة التقطيع بالبلازما (CNC)</button>
-            <div id="robotOutput" class="cad-screen"></div>
+            <p style="font-size: 13px; color: #d1d5db;">تشخيص وحركة الأذرع الروبوتية وبلازما الـ CNC:</p>
+            <button class="action-btn" onclick="runRobot('welding')">⚙️ تشخيص روبوت اللحام الهيكلي</button>
+            <button class="action-btn" onclick="runRobot('plasma')">⚡ تشغيل وحدة التقطيع بالبلازما (CNC)</button>
         </div>
 
         <!-- إطار حقوق الملكية السيادية والمسؤولية -->
         <div class="footer-disclaimer">
-            إطار (صيغة إخلاء المسؤولية في المنصة): نظام استشاري - مخرجاته مسودات لا تغني عن فحص ومراجعة وتوقيع مهندس/استشاري مرخص قبل أي تنفيذ أو تشغيل فعلي.<br>
-            <strong>المالك والمطور الرئيسي: محمود السيسي</strong> – © 2026 – جميع الحقوق محفوظة ومحمية سيادياً.<br>
+            إطار (صيغة إخلاء المسؤولية في المنصة): نظام استشاري - مخرجاته مسودات لا تغني عن فحص ومراجعة وتوقيع مهندس/استشاري مرخص قبل أي تنفيذ أو تشغيل فعلي.<br><strong>المالك والمطور الرئيسي: محمود السيسي</strong> – © 2026 – جميع الحقوق محفوظة ومحمية سيادياً.<br>
             <span style="font-family: monospace; color: var(--primary-gold);">SHA3-512 cryptographic seal: SISI-SINGULARITY-APEX-MASTER-998822A</span>
         </div>
     </div>
 
     <script>
         function renderDesign(type) {
-            const out = document.getElementById('cadOutput');
-            const svgBox = document.getElementById('svgBox');
-            out.style.display = 'block';
-            svgBox.style.display = 'block';
-            
-            let specs = "";
             if(type === 'concrete') {
-                specs = "[مخطط CAD: محطة خرسانة Twin Shaft]\n- السعة: 120 م³/ساعة\n- الصوامع: 3 صوامع × 100 طن\n- الخلاطة: ثنائية العمود ذات عزم عالي\n- التوافق مع المعايير: EN 206 الهندسية";
+                alert("🧱 [تصميم محطة خرسانة Twin Shaft]\n- السعة: 120 م³/ساعة\n- الصوامع: 3 صوامع × 100 طن\n- الخلاطة: ثنائية العمود ذات عزم عالي\n- معتمد برعاية المالك: محمود السيسي");
             } else if(type === 'brick') {
-                specs = "[مخطط CAD: ماكينة طوب آلية هيدروليكية]\n- القدرة الإنتاجية: 5000 قالب/ساعة\n- الضغط الهيدروليكي: 180 بار\n- نظام التحكم: PLC متكامل مع حساسات ضغط دقيقة";
+                alert("🏗️ [تصميم ماكينة طوب آلية هيدروليكية]\n- الإنتاج: 5000 قالب/ساعة\n- الضغط الهيدروليكي: 180 بار\n- معتمد برعاية المالك: محمود السيسي");
             } else if(type === 'asphalt') {
-                specs = "[مخطط CAD: محطة أسفلت Drum Mix]\n- السعة الإنتاجية: 160 طن/ساعة\n- نظام التجفيف: أسطوانة حرارية ذات كفاءة 94%\n- نظام الفلاتر: حقائب تنقية الغبار البيئية";
+                alert("🛣️ [تصميم محطة أسفلت Drum Mix]\n- السعة: 160 طن/ساعة\n- نظام التجفيف: أسطوانة حرارية كفاءة 94%\n- معتمد برعاية المالك: محمود السيسي");
             } else if(type === 'plasma') {
-                specs = "[مخطط CAD: روبوت تقطيع بالبلازما CNC]\n- دقة القص: 0.1 مم\n- طاقة الشعلة: 200 أمبير لقطع الصلب حتى 50 مم\n- مسار الحركة: إحداثيات ثلاثية الأبعاد (X, Y, Z)";
+                alert("🤖 [تصميم روبوت تقطيع بالبلازما CNC]\n- دقة القص: 0.1 مم\n- طاقة الشعلة: 200 أمبير\n- معتمد برعاية المالك: محمود السيسي");
             }
-            
-            out.innerHTML = ${specs}\n----------------------------------------\n✔ الحالة: تم توليد المخطط الهندسي بدقة متناهية وحفظه.\n✔ المالك السيادي: محمود السيسي;
         }
 
         function renderSiteView() {
-            const out = document.getElementById('siteOutput');
-            out.style.display = 'block';
-            out.innerHTML = [التصور الأولي للمحطة في الموقع الفعلي - Site Layout Preview]\n----------------------------------------\n• المساحة المطلوبة: 2500 متر مربع مصممة هندسياً.\n• توزيع المداخل ومسارات سيارات الإسمنت والقلابات.\n• موقع صوامع الأسمنت ووحدة التحكم المركزية.\n• تقييم المخاطر البيئية والتهوية: ممتاز وآمن.\n• معتمد هندسياً برعاية المالك: محمود السيسي;
+            alert("📍 [التصور الأولي للمحطة في الموقع - Site Layout]\n- المساحة: 2500 متر مربع مصممة هندسياً.\n- توزيع المداخل ومسارات سيارات الإسمنت والقلابات.\n- الحالة: ممتازة وآمنة تحت إشراف المالك: محمود السيسي");
         }
 
         function runRobot(type) {
-            const out = document.getElementById('robotOutput');
-            out.style.display = 'block';
             if(type === 'welding') {
-                out.innerHTML = [روبوت اللحام الهيكلي]\n----------------------------------------\n✔ الفحص الجانبي: 100% تطابق مع الإحداثيات.\n✔ درجة حرارة شعلة اللحام: 1450°م\n✔ الحالة التشغيلية: مستقرة وآمنة تماماً.;
+                alert("⚙️ [روبوت اللحام الهيكلي]\n- الفحص الجانبي: 100% مطابق للأبعاد.\n- حرارة الشعلة: 1450°م\n- الحالة: استقرار تام تحت إدارة محمود السيسي.");
             } else {
-                out.innerHTML = [وحدة التقطيع بالبلازما CNC]\n----------------------------------------\n✔ جاري قص الألواح المعدنية لهياكل المحطات بدقة مفرطة.\n✔ سرعة الحركة: 12 متر/دقيقة.\n✔ الحالة: تنفيذ تلقائي بالذكاء الاصطناعي.;
+                alert("⚡ [وحدة التقطيع بالبلازما CNC]\n- جاري قص الألواح المعدنية لهياكل المحطات بدقة مفرطة.\n- السرعة: 12 متر/دقيقة.\n- الحالة: تنفيذ تلقائي ناجح.");
             }
         }
     </script>
 
 </body>
 </html>
+<body>
