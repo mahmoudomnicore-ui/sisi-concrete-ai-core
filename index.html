@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISI CONCRETE AI - المنظومة السيادية للذكاء الاصطناعي الخرساني</title>
+    <title>SISI CONCRETE AI - المنظومة السيادية الكاملة</title>
     <style>
         :root {
             --primary-gold: #f39c12;
@@ -14,12 +14,12 @@
         }
         body {
             margin: 0;
-            padding: 0;
+            padding: 20px;
             background-color: var(--dark-bg);
             color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
@@ -28,8 +28,8 @@
             border: 2px solid var(--primary-gold);
             border-radius: 16px;
             padding: 30px;
-            width: 90%;
-            max-width: 900px;
+            width: 100%;
+            max-width: 950px;
             box-shadow: 0 10px 30px rgba(243, 156, 18, 0.2);
             text-align: center;
         }
@@ -53,63 +53,62 @@
             margin-bottom: 20px;
             font-size: 15px;
         }
-        .client-section {
-            background-color: #1f2937;
-            border: 1px solid #374151;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            text-align: right;
-        }
-        .client-section h3 {
-            color: var(--primary-gold);
-            margin-top: 0;
-            font-size: 16px;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #0b0f19;
-            border: 1px solid #4b5563;
-            color: #fff;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: var(--primary-gold);
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            background-color: #e67e22;
-        }
         .modules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
         .module-card {
             background-color: #1f2937;
             border: 1px solid #374151;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 12px;
             text-align: right;
+            transition: 0.3s;
+        }
+        .module-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-3px);
         }
         .module-card h4 {
             color: var(--primary-gold);
-            margin: 0 0 8px 0;
+            margin: 0 0 10px 0;
+            font-size: 18px;
         }
         .module-card p {
             font-size: 13px;
             color: #d1d5db;
-            margin: 0;
+            margin-bottom: 15px;
+        }
+        button.action-btn {
+            background-color: var(--primary-gold);
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        button.action-btn:hover {
+            background-color: #e67e22;
+        }
+        .output-box {
+            background-color: #0b0f19;
+            border: 1px solid #374151;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--accent-green);
+            text-align: left;
+            direction: ltr;
+            min-height: 40px;
+            max-height: 120px;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -117,65 +116,56 @@
 
     <div class="dashboard-container">
         <h1>SISI CONCRETE AI</h1>
-        <p class="subtitle">المنظومة السيادية الذكية لإدارة ومحاكاة الخرسانة والتشغيل الصناعي</p>
+        <p class="subtitle">المنظومة السيادية للذكاء الاصطناعي ومحاكاة محطات الخرسانة والروبوتات الصناعية</p>
         
-        <!-- تعرف تلقائي على المالك -->
+        <!-- الترحيب السيادي بالمالك -->
         <div id="ownerStatus" class="owner-banner">
-            🚀 جاري التحقق من هوية المالك والاستضافة...
+            👑 مرحباً بك يا محمود يا سيسي (المالك والمطور الرئيسي) - محرك العمليات الصناعية مفعل بالكامل.
         </div>
-
-        <!-- قسم خاص بالزبون لطلب المفتاح وتفعيل الترخيص --><div class="client-section">
-            <h3>بوابة ترخيص العملاء</h3>
-            <p style="font-size: 13px; color: #9ca3af; margin-bottom: 10px;">إذا كنت عميلاً جديداً، أدخل كود العميل أو اطلب ترخيص التشغيل:</p>
-            <input type="text" id="clientKeyInput" placeholder="أدخل مفتاح الترخيص الخاص بك هنا...">
-            <button onclick="verifyClientKey()">تحقق وتفعيل التشغيل</button>
-            <p id="keyMsg" style="font-size: 13px; margin-top: 8px;"></p>
-        </div>
-
-        <!-- لوحة التحكم والأقسام الصناعية -->
+<!-- أقسام التشغيل والتحكم التفاعلية -->
         <div class="modules-grid">
+            
+            <!-- قسم محاكاة وعربة الخرسانة -->
             <div class="module-card">
-                <h4>محاكاة الخلطات</h4>
-                <p>إدارة نسب المكونات وتحليل المقاومة بالذكاء الاصطناعي.</p>
+                <h4>محاكاة عربة الخرسانة والأحمال</h4>
+                <p>إدارة خلطات الخلاطة المركزية وتحميل العربات بنسب الأسمنت والركام بدقة.</p>
+                <button class="action-btn" onclick="runConcreteMixSimulation()">تشغيل محاكاة العربة</button>
+                <div id="mixOutput" class="output-box">جاهز للتشغيل...</div>
             </div>
+
+            <!-- قسم تصميم محطات الخلط -->
             <div class="module-card">
-                <h4>توليد الكود الصناعي</h4>
-                <p>إنشاء ومراجعة أكواد PLC و DXF لحظياً.</p>
+                <h4>تصميم وهندسة محطات الخلط</h4>
+                <p>توليد المخططات الهندسية ومعدلات الإنتاج اللحظية للمحطة.</p>
+                <button class="action-btn" onclick="generatePlantDesign()">توليد تصميم المحطة</button>
+                <div id="plantOutput" class="output-box">جاهز للتصميم...</div>
             </div>
+
+            <!-- قسم تشغيل الروبوتات والتشغيل الآلي -->
             <div class="module-card">
-                <h4>المراقبة التنبؤية</h4>
-                <p>تتبع الأحمال والمعدات الثقيلة والتشغيل الآلي.</p>
+                <h4>إدارة الأذرع الآلية والروبوتات</h4>
+                <p>التحكم الآلي في صمامات المياه، سيور النقل، والتحركات الهيدروليكية.</p>
+                <button class="action-btn" onclick="activateRobotics()">إطلاق وتشغيل الروبوتات</button>
+                <div id="robotOutput" class="output-box">في انتظار الأمر...</div>
             </div>
+
         </div>
     </div>
 
     <script>
-        // التعرف على المالك بناءً على نطاق الاستضافة أو الحساب
-        window.onload = function() {
-            const host = window.location.hostname;
-            const banner = document.getElementById('ownerStatus');
-            
-            // تحقق إذا كانت الاستضافة تخص محمود السيسي
-            if (host.includes('mahmoudomnicore-ui') || host.includes('github.io')) {
-                banner.innerHTML = "👑 مرحباً بك يا محمود يا سيسي (المالك والمطور الرئيسي) - صلاحيات سيادية كاملة مفعلة تلقائياً.";
-                banner.style.borderColor = "#10b981";
-                banner.style.color = "#10b981";
-            } else {
-                banner.innerHTML = "🔒 مرحباً بك في بوابة SISI CONCRETE AI - يرجى إدخال مفتاح الترخيص المعتمد.";
-            }
-        };
+        function runConcreteMixSimulation() {
+            const out = document.getElementById('mixOutput');
+            out.innerHTML = "[SIMULATION] 🚚 Filling truck with 12m³ Concrete...\n- Cement: 420kg/m³\n- Water/Cement Ratio: 0.42\n- Status: Ready for dispatch!";
+        }
 
-        function verifyClientKey() {
-            const key = document.getElementById('clientKeyInput').value.trim();
-            const msg = document.getElementById('keyMsg');
-            
-            if (key === "MAHMOUD-EL-SISI-SOVEREIGN-MASTER-2026" || key.startsWith("SISI-CLIENT")) {
-                msg.style.color = "#10b981";
-                msg.innerHTML = "✅ تم التحقق بنجاح! تم فتح قنوات التشغيل الصناعي للعميل.";
-            } else {
-                msg.style.color = "#ef4444";
-                msg.innerHTML = "❌ المفتاح غير صالح. يرجى مراجعة الإدارة للحصول على الترخيص.";
-            }
+        function generatePlantDesign() {
+            const out = document.getElementById('plantOutput');
+            out.innerHTML = "[PLANT AI] 🏗️ Blueprint generated successfully.\n- Capacity: 120 m³/h\n- Silos Active: 4\n- Mixers: Twin-shaft operational.";
+        }
+
+        function activateRobotics() {
+            const out = document.getElementById('robotOutput');
+            out.innerHTML = "[ROBOTICS] 🤖 Hydraulic arms engaged.\n- Conveyor belt: RUNNING (Speed 2.4 m/s)\n- Safety sensors: All green.";
         }
     </script>
 
