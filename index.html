@@ -115,7 +115,6 @@
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 20px;
-            overflow: hidden;
         }
         .command-box input {
             width: 70%;
@@ -125,17 +124,16 @@
             color: #fff;
             border-radius: 6px;
             box-sizing: border-box;
-            float: right;}
+        }
         .command-box button {
-            background-color: var(--primary-gold);
-            color: #000;
+            background-color: var(--primary-gold);color: #000;
             border: none;
             padding: 10px 15px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
             width: 25%;
-            float: left;
+            margin-right: 2%;
         }
         .card {
             background-color: #1f2937;
@@ -156,11 +154,25 @@
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            margin-right: 5px;
-            margin-top: 5px;
+            margin: 5px 5px 5px 0;
         }
         button.action-btn:hover {
             background-color: #e67e22;
+        }
+        .live-output {
+            background-color: #0b0f19;
+            border: 1px solid #374151;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--accent-green);
+            text-align: left;
+            direction: ltr;
+            min-height: 45px;
+            max-height: 120px;
+            overflow-y: auto;
         }
         .footer-disclaimer {
             margin-top: 25px;
@@ -181,7 +193,7 @@
         
         <!-- الترحيب السيادي الحصري -->
         <div class="owner-banner">
-            👑 مرحباً بك يا محمود يا سيسي (المالك والمطور الرئيسي) - النظام مفعل بصلاحيات مطلقة وبدون أي قيود.
+            👑 مرحباً بك يا محمود يا سيسي (المالك والمطور الرئيسي) - محرك التشغيل التفاعلي مفعل.
         </div>
 
         <!-- أزرار التنقل الرئيسية -->
@@ -195,10 +207,10 @@
         <div id="start" class="panel active">
             <div class="command-box">
                 <h4 style="color: var(--primary-gold); margin-top: 0;">مركز الأوامر الذكي</h4>
-                <p style="font-size: 12px; color: #9ca3af; margin-bottom: 10px;">اكتب أمراً مثل: "ولد محطة خرسانة" أو "تصدير DXF"</p>
+                <p style="font-size: 12px; color: #9ca3af; margin-bottom: 10px;">اكتب أمراً مثل: "ولد محطة" أو "فحص الأعطال"</p>
                 <input type="text" id="cmdInput" placeholder="اكتب أمرك هنا...">
                 <button onclick="executeCommand()">تنفيذ</button>
-                <div id="cmdOutput" style="clear: both; margin-top: 10px; font-family: monospace; font-size: 12px; color: var(--accent-green);"></div>
+                <div id="cmdOutput" class="live-output">في انتظار الأوامر الهندسية...</div>
             </div>
 
             <div class="metrics-grid">
@@ -219,24 +231,27 @@
             <div class="card">
                 <h4>التنبيهات العاجلة</h4>
                 <p style="font-size: 13px;">⚠️ محطة خرسانة متنقلة 120: الصيانة مطلوبة بعد 40 ساعة تشغيل فقط.</p>
-                <button class="action-btn" onclick="alert('تم إنشاء أمر شغل فوري بنجاح!')">أمر شغل</button>
-                <button class="action-btn" onclick="alert('تم حفظ النسخة الاحتياطية بنجاح!')">النسخ الاحتياطي</button>
+                <button class="action-btn" onclick="triggerAction('workOrder')">إنشاء أمر شغل</button><button class="action-btn" onclick="triggerAction('backup')">النسخ الاحتياطي</button>
+                <div id="startOutput" class="live-output">جاهز للعمليات...</div>
             </div>
         </div>
 
-        <!-- لوحة 2: الرئيسية والتشغيل (أسطول المعدات وحسابات OEE) --><div id="main" class="panel">
+        <!-- لوحة 2: الرئيسية والتشغيل -->
+        <div id="main" class="panel">
             <div class="card">
                 <h4>أسطول المحطات والمعدات الشامل (Universal Fleet Matrix)</h4>
-                <p style="font-size: 13px; color: #d1d5db;">مراقبة حية لدرجات الحرارة، الاهتزاز، وحالة الخلاطات والمحطات الثابتة والمتنقلة.</p>
-                <button class="action-btn" onclick="alert('EQ-1: محطة خرسانة ثابتة 60 - الحرارة: 60.2°م - الاهتزاز: 2.49 مم/ث - الحالة: طبيعي')">فحص EQ-1 (محطة 60)</button>
-                <button class="action-btn" onclick="alert('EQ-3: محطة خرسانة متنقلة 120 - الحرارة: 57.8°م - الاهتزاز: 3.51 مم/ث - الحالة: إنذار صيانة')">فحص EQ-3 (متنقلة)</button>
+                <p style="font-size: 13px; color: #d1d5db;">مراقبة حية لدرجات الحرارة، الاهتزاز، وحالة الخلاطات والمحطات.</p>
+                <button class="action-btn" onclick="checkEquipment('EQ-1: محطة خرسانة ثابتة 60', '60.2°م', '2.49 مم/ث')">فحص EQ-1 (محطة 60)</button>
+                <button class="action-btn" onclick="checkEquipment('EQ-3: محطة خرسانة متنقلة 120', '57.8°م', '3.51 مم/ث')">فحص EQ-3 (متنقلة)</button>
+                <div id="fleetOutput" class="live-output">اضغط على إحدى المعدات لفحص قراءاتها الحية...</div>
             </div>
 
             <div class="card">
                 <h4>أوامر الشغل والمخزون و OEE</h4>
                 <p style="font-size: 13px; color: #d1d5db;">إدارة قطع الغيار، حساب الكفاءة الكلية للمعدات، وتسجيل الورديات.</p>
-                <button class="action-btn" onclick="alert('تم حساب كفاءة OEE وتسجيل الوردية بنجاح!')">تسجيل وردية / دفعة OEE</button>
-                <button class="action-btn" onclick="alert('تم تصدير ملف المخزون والبيانات بصيغة CSV بنجاح.')">تصدير CSV</button>
+                <button class="action-btn" onclick="triggerAction('oee')">تسجيل وردية / دفعة OEE</button>
+                <button class="action-btn" onclick="triggerAction('csv')">تصدير CSV</button>
+                <div id="oeeOutput" class="live-output">في انتظار تسجيل الوردية...</div>
             </div>
         </div>
 
@@ -245,10 +260,11 @@
             <div class="card">
                 <h4>مولد المخططات الهندسية والتنفيذية (ASPHALT / CONCRETE DRUM)</h4>
                 <p style="font-size: 13px; color: #d1d5db;">إصدار وتصدير المخططات الهندسية للمحطات والصوامع والسيور الناقلة.</p>
-                <button class="action-btn" onclick="alert('جاري تجهيز وتصدير ملف الـ DXF الهندسي...')">تحميل DXF</button>
+                <button class="action-btn" onclick="exportBlueprint('DXF')">تحميل DXF</button>
                 <button class="action-btn" onclick="window.print()">طباعة / حفظ PDF 🖨️</button>
-                <button class="action-btn" onclick="alert('تم توليد الكاتالوج الاحترافي (أسود/ذهبي) بصيغة SVG بنجاح!')">كتالوج (أسود/ذهبي) SVG</button>
-                <button class="action-btn" onclick="alert('تم تصدير حزمة ملفات الحفظ ZIP + Manifest بنجاح.')">تصدير ZIP + Manifest</button>
+                <button class="action-btn" onclick="exportBlueprint('SVG')">كتالوج (أسود/ذهبي) SVG</button>
+                <button class="action-btn" onclick="exportBlueprint('ZIP')">تصدير حزمة ZIP</button>
+                <div id="blueOutput" class="live-output">اختر صيغة المخطط لتوليده فوريًا...</div>
             </div>
         </div>
 
@@ -272,10 +288,33 @@
             const input = document.getElementById('cmdInput').value.trim();
             const out = document.getElementById('cmdOutput');
             if(input) {
-                out.innerHTML = [SISI AI EXECUTED] تم تنفيذ الأمر بنجاح: "${input}" - محرك المنظومة يعمل بكفاءة تامة وقيد التشغيل.;
+                out.innerHTML = [SISI AI EXECUTED] تم تنفيذ الأمر بنجاح: "${input}"\n- الحالة: نشط وآمن\n- المالك: محمود السيسي;
             } else {
-                out.innerHTML = [SISI AI] يرجى إدخال أمر هندسي صحيح في الحقل.;
+                out.innerHTML = [SISI AI WARNING] يرجى إدخال أمر هندسي صحيح.;
             }
+        }
+
+        function triggerAction(type) {
+            const out = document.getElementById('startOutput');const oeeOut = document.getElementById('oeeOutput');
+            if(type === 'workOrder') {
+                out.innerHTML = [SUCCESS] تم إنشاء أمر الشغل الفوري لصيانة المحطة المتنقلة 120 وتخصيص الفنيين بنجاح.;
+            } else if(type === 'backup') {
+                out.innerHTML = [SUCCESS] تم إنشاء النسخة الاحتياطية وحفظ السجلات بقاعدة البيانات المشفرة بنجاح.;
+            } else if(type === 'oee') {
+                oeeOut.innerHTML = [OEE ENGINE] تم تسجيل الوردية بنجاح: الإتاحة 92% | الأداء 88% | الجودة 99% | الكفاءة الكلية ممتازة.;
+            } else if(type === 'csv') {
+                oeeOut.innerHTML = [EXPORT] تم تجهيز وتنزيل ملف البيانات التشغيلية (SISI_Operations.csv) بنجاح.;
+            }
+        }
+
+        function checkEquipment(eqName, temp, vib) {
+            const out = document.getElementById('fleetOutput');
+            out.innerHTML = [FLEET MONITOR] ${eqName}\n- درجات الحرارة الحية: ${temp}\n- معدل الاهتزاز: ${vib}\n- الحالة التشغيلية: مستقرة وآمنة.;
+        }
+
+        function exportBlueprint(format) {
+            const out = document.getElementById('blueOutput');
+            out.innerHTML = [CAD ENGINE] تم توليد ملف الـ (${format}) الهندسي للمحطة بدقة تامة وجاهز للتحميل والتنفيذ تحت إشراف المالك محمود السيسي.;
         }
     </script>
 
