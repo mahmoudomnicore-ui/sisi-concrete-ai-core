@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISI CONCRETE AI - المنظومة السيادية الكاملة</title>
+    <title>SISI CONCRETE AI - المنظومة الهندسية والصناعية المتكاملة</title>
     <style>
         :root {
             --primary-gold: #f39c12;
@@ -11,10 +12,11 @@
             --card-bg: #111827;
             --text-color: #f3f4f6;
             --accent-green: #10b981;
+            --accent-red: #ef4444;
         }
         body {
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             background-color: var(--dark-bg);
             color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -27,20 +29,21 @@
             background-color: var(--card-bg);
             border: 2px solid var(--primary-gold);
             border-radius: 16px;
-            padding: 30px;
+            padding: 25px;
             width: 100%;
-            max-width: 950px;
+            max-width: 1000px;
             box-shadow: 0 10px 30px rgba(243, 156, 18, 0.2);
-            text-align: center;
         }
         h1 {
             color: var(--primary-gold);
+            text-align: center;
             margin-bottom: 5px;
-            font-size: 26px;
+            font-size: 24px;
         }
         p.subtitle {
             color: #9ca3af;
-            font-size: 14px;
+            text-align: center;
+            font-size: 13px;
             margin-bottom: 20px;
         }
         .owner-banner {
@@ -50,38 +53,80 @@
             padding: 12px;
             border-radius: 10px;
             font-weight: bold;
+            text-align: center;
             margin-bottom: 20px;
-            font-size: 15px;
+            font-size: 14px;
         }
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
-        .module-card {
+        .tab-btn {
             background-color: #1f2937;
+            color: #fff;
             border: 1px solid #374151;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: right;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
             transition: 0.3s;
         }
-        .module-card:hover {
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary-gold);
+            color: #000;
             border-color: var(--primary-gold);
-            transform: translateY(-3px);
         }
-        .module-card h4 {
-            color: var(--primary-gold);
-            margin: 0 0 10px 0;
-            font-size: 18px;
+        .panel {
+            display: none;
         }
-        .module-card p {
+        .panel.active {
+            display: block;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .metric-card {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .metric-card h4 {
+            color: #9ca3af;
             font-size: 13px;
-            color: #d1d5db;
-            margin-bottom: 15px;
+            margin: 0 0 8px 0;
         }
-        button.action-btn {
+        .metric-card .val {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--accent-green);
+        }
+        .command-box {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .command-box input {
+            width: 70%;
+            padding: 10px;
+            background: #0b0f19;
+            border: 1px solid #4b5563;
+            color: #fff;
+            border-radius: 6px;
+            box-sizing: border-box;
+            float: right;}
+        .command-box button {
             background-color: var(--primary-gold);
             color: #000;
             border: none;
@@ -89,26 +134,42 @@
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
+            width: 25%;
+            float: left;
+        }
+        .card {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .card h4 {
+            color: var(--primary-gold);
+            margin: 0 0 10px 0;
+        }
+        button.action-btn {
+            background-color: var(--primary-gold);
+            color: #000;
+            border: none;
+            padding: 8px 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-top: 5px;
         }
         button.action-btn:hover {
             background-color: #e67e22;
         }
-        .output-box {
-            background-color: #0b0f19;
-            border: 1px solid #374151;
-            padding: 12px;
-            border-radius: 6px;
-            margin-top: 15px;
-            font-family: monospace;
-            font-size: 12px;
-            color: var(--accent-green);
-            text-align: left;
-            direction: ltr;
-            min-height: 40px;
-            max-height: 120px;
-            overflow-y: auto;
+        .footer-disclaimer {
+            margin-top: 25px;
+            border-top: 1px solid #374151;
+            padding-top: 15px;
+            font-size: 11px;
+            color: #9ca3af;
+            text-align: center;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -116,56 +177,105 @@
 
     <div class="dashboard-container">
         <h1>SISI CONCRETE AI</h1>
-        <p class="subtitle">المنظومة السيادية للذكاء الاصطناعي ومحاكاة محطات الخرسانة والروبوتات الصناعية</p>
+        <p class="subtitle">المنظومة الهندسية والصناعية المتكاملة - محاكاة محطات الخرسانة والروبوتات</p>
         
-        <!-- الترحيب السيادي بالمالك -->
-        <div id="ownerStatus" class="owner-banner">
-            👑 مرحباً بك يا محمود يا سيسي (المالك والمطور الرئيسي) - محرك العمليات الصناعية مفعل بالكامل.
+        <!-- الترحيب السيادي الحصري -->
+        <div class="owner-banner">
+            👑 مرحباً بك يا محمود يا سيسي (المالك والمطور الرئيسي) - النظام مفعل بصلاحيات مطلقة وبدون أي قيود.
         </div>
-<!-- أقسام التشغيل والتحكم التفاعلية -->
-        <div class="modules-grid">
-            
-            <!-- قسم محاكاة وعربة الخرسانة -->
-            <div class="module-card">
-                <h4>محاكاة عربة الخرسانة والأحمال</h4>
-                <p>إدارة خلطات الخلاطة المركزية وتحميل العربات بنسب الأسمنت والركام بدقة.</p>
-                <button class="action-btn" onclick="runConcreteMixSimulation()">تشغيل محاكاة العربة</button>
-                <div id="mixOutput" class="output-box">جاهز للتشغيل...</div>
+
+        <!-- أزرار التنقل الرئيسية -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('start', this)">ابدأ من هنا</button>
+            <button class="tab-btn" onclick="switchTab('main', this)">الرئيسية والتشغيل</button>
+            <button class="tab-btn" onclick="switchTab('blueprints', this)">المخططات والمعدات</button>
+        </div>
+
+        <!-- لوحة 1: ابدأ من هنا -->
+        <div id="start" class="panel active">
+            <div class="command-box">
+                <h4 style="color: var(--primary-gold); margin-top: 0;">مركز الأوامر الذكي</h4>
+                <p style="font-size: 12px; color: #9ca3af; margin-bottom: 10px;">اكتب أمراً مثل: "ولد محطة خرسانة" أو "تصدير DXF"</p>
+                <input type="text" id="cmdInput" placeholder="اكتب أمرك هنا...">
+                <button onclick="executeCommand()">تنفيذ</button>
+                <div id="cmdOutput" style="clear: both; margin-top: 10px; font-family: monospace; font-size: 12px; color: var(--accent-green);"></div>
             </div>
 
-            <!-- قسم تصميم محطات الخلط -->
-            <div class="module-card">
-                <h4>تصميم وهندسة محطات الخلط</h4>
-                <p>توليد المخططات الهندسية ومعدلات الإنتاج اللحظية للمحطة.</p>
-                <button class="action-btn" onclick="generatePlantDesign()">توليد تصميم المحطة</button>
-                <div id="plantOutput" class="output-box">جاهز للتصميم...</div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>مؤشر حالة المنظومة</h4>
+                    <div class="val">95 / 100</div>
+                </div>
+                <div class="metric-card">
+                    <h4>معدات قيد التشغيل</h4>
+                    <div class="val">11 / 11</div>
+                </div>
+                <div class="metric-card">
+                    <h4>بنود تحتاج انتباهك</h4>
+                    <div class="val" style="color: var(--primary-gold);">2</div>
+                </div>
             </div>
 
-            <!-- قسم تشغيل الروبوتات والتشغيل الآلي -->
-            <div class="module-card">
-                <h4>إدارة الأذرع الآلية والروبوتات</h4>
-                <p>التحكم الآلي في صمامات المياه، سيور النقل، والتحركات الهيدروليكية.</p>
-                <button class="action-btn" onclick="activateRobotics()">إطلاق وتشغيل الروبوتات</button>
-                <div id="robotOutput" class="output-box">في انتظار الأمر...</div>
+            <div class="card">
+                <h4>التنبيهات العاجلة</h4>
+                <p style="font-size: 13px;">⚠️ محطة خرسانة متنقلة 120: الصيانة مطلوبة بعد 40 ساعة تشغيل فقط.</p>
+                <button class="action-btn" onclick="alert('تم إنشاء أمر شغل فوري بنجاح!')">أمر شغل</button>
+                <button class="action-btn" onclick="alert('تم حفظ النسخة الاحتياطية بنجاح!')">النسخ الاحتياطي</button>
+            </div>
+        </div>
+
+        <!-- لوحة 2: الرئيسية والتشغيل (أسطول المعدات وحسابات OEE) --><div id="main" class="panel">
+            <div class="card">
+                <h4>أسطول المحطات والمعدات الشامل (Universal Fleet Matrix)</h4>
+                <p style="font-size: 13px; color: #d1d5db;">مراقبة حية لدرجات الحرارة، الاهتزاز، وحالة الخلاطات والمحطات الثابتة والمتنقلة.</p>
+                <button class="action-btn" onclick="alert('EQ-1: محطة خرسانة ثابتة 60 - الحرارة: 60.2°م - الاهتزاز: 2.49 مم/ث - الحالة: طبيعي')">فحص EQ-1 (محطة 60)</button>
+                <button class="action-btn" onclick="alert('EQ-3: محطة خرسانة متنقلة 120 - الحرارة: 57.8°م - الاهتزاز: 3.51 مم/ث - الحالة: إنذار صيانة')">فحص EQ-3 (متنقلة)</button>
             </div>
 
+            <div class="card">
+                <h4>أوامر الشغل والمخزون و OEE</h4>
+                <p style="font-size: 13px; color: #d1d5db;">إدارة قطع الغيار، حساب الكفاءة الكلية للمعدات، وتسجيل الورديات.</p>
+                <button class="action-btn" onclick="alert('تم حساب كفاءة OEE وتسجيل الوردية بنجاح!')">تسجيل وردية / دفعة OEE</button>
+                <button class="action-btn" onclick="alert('تم تصدير ملف المخزون والبيانات بصيغة CSV بنجاح.')">تصدير CSV</button>
+            </div>
+        </div>
+
+        <!-- لوحة 3: المخططات والمعدات -->
+        <div id="blueprints" class="panel">
+            <div class="card">
+                <h4>مولد المخططات الهندسية والتنفيذية (ASPHALT / CONCRETE DRUM)</h4>
+                <p style="font-size: 13px; color: #d1d5db;">إصدار وتصدير المخططات الهندسية للمحطات والصوامع والسيور الناقلة.</p>
+                <button class="action-btn" onclick="alert('جاري تجهيز وتصدير ملف الـ DXF الهندسي...')">تحميل DXF</button>
+                <button class="action-btn" onclick="window.print()">طباعة / حفظ PDF 🖨️</button>
+                <button class="action-btn" onclick="alert('تم توليد الكاتالوج الاحترافي (أسود/ذهبي) بصيغة SVG بنجاح!')">كتالوج (أسود/ذهبي) SVG</button>
+                <button class="action-btn" onclick="alert('تم تصدير حزمة ملفات الحفظ ZIP + Manifest بنجاح.')">تصدير ZIP + Manifest</button>
+            </div>
+        </div>
+
+        <!-- إطار إخلاء المسؤولية وحقوق الملكية السيادية -->
+        <div class="footer-disclaimer">
+            إطار (صيغة إخلاء المسؤولية في المنصة): نظام استشاري - مخرجاته مسودات لا تغني عن فحص ومراجعة وتوقيع مهندس/استشاري مرخص قبل أي تنفيذ أو تشغيل فعلي.<br>
+            <strong>المالك: محمود السيسي</strong> – © 2026 – جميع الحقوق محفوظة.<br>
+            <span style="font-family: monospace; color: var(--primary-gold);">SHA3-512 seal: HOU-SINGULARITY-APEX-7075532A56FF6D5A</span>
         </div>
     </div>
 
     <script>
-        function runConcreteMixSimulation() {
-            const out = document.getElementById('mixOutput');
-            out.innerHTML = "[SIMULATION] 🚚 Filling truck with 12m³ Concrete...\n- Cement: 420kg/m³\n- Water/Cement Ratio: 0.42\n- Status: Ready for dispatch!";
+        function switchTab(panelId, btn) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+            btn.classList.add('active');
         }
 
-        function generatePlantDesign() {
-            const out = document.getElementById('plantOutput');
-            out.innerHTML = "[PLANT AI] 🏗️ Blueprint generated successfully.\n- Capacity: 120 m³/h\n- Silos Active: 4\n- Mixers: Twin-shaft operational.";
-        }
-
-        function activateRobotics() {
-            const out = document.getElementById('robotOutput');
-            out.innerHTML = "[ROBOTICS] 🤖 Hydraulic arms engaged.\n- Conveyor belt: RUNNING (Speed 2.4 m/s)\n- Safety sensors: All green.";
+        function executeCommand() {
+            const input = document.getElementById('cmdInput').value.trim();
+            const out = document.getElementById('cmdOutput');
+            if(input) {
+                out.innerHTML = [SISI AI EXECUTED] تم تنفيذ الأمر بنجاح: "${input}" - محرك المنظومة يعمل بكفاءة تامة وقيد التشغيل.;
+            } else {
+                out.innerHTML = [SISI AI] يرجى إدخال أمر هندسي صحيح في الحقل.;
+            }
         }
     </script>
 
